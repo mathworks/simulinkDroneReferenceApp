@@ -1,0 +1,3 @@
+[submodule "models/Autopilot/src/mavlink"]
+	path = models/Autopilot/src/mavlink
+	url = https://github.com/malife/mavlink.git

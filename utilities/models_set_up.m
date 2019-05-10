@@ -7,10 +7,10 @@ C = evalin('base','who;');
 % If not empty, Warn the user about clearing the worksapce
 choice = 'Yes';
 
-if isempty(C) ~= 1
+if ~isempty(C)
     choice = questdlg('This  script will clear the Base Workspace before setting up the Simulation task. Do you wish to Continue?', ...
-                    'Clear Base Workspace', ...
-                    'Yes','No', 'Yes');
+        'Clear Base Workspace', ...
+        'Yes','No', 'Yes');
 end
 
 if strcmp(choice, 'Yes')
@@ -21,13 +21,13 @@ if strcmp(choice, 'Yes')
     evalin('base', 'clearvars;');
     
     % Load the dictionary data into the workspace
-    evalin('base', 'dd;'); 
+    evalin('base', 'dd;');
     
     switch selectedTask
-        case eTask.FlightControllerDesign
+        case {eTask.FlightControllerDesign, eTask.TestFlightController, eTask.FlightEnvelopeCharacterization}
             % Load the configuration sets for the models
-            evalin('base', 'plantConfigSet = sim_plant_configset;'); 
-            evalin('base', 'ctrlConfigSet = ctrl_configset;'); 
+            evalin('base', 'plantConfigSet = sim_plant_configset;');
+            evalin('base', 'ctrlConfigSet = ctrl_configset;');
             
             % Set the variant for QGroundControl
             evalin('base', 'QGC = 0;');
@@ -36,30 +36,45 @@ if strcmp(choice, 'Yes')
             evalin('base', 'simMode=0;');
             
             % Open the Simulation Model
-            uiopen('simModel',1);
-            
+            open_system('simModel');
             
             % Let user know config is done
-            clc;
             disp ('Simulation Configuration Completed')
             
-        case {eTask.TestFlightController, eTask.FlightEnvelopeCharacterization}
+        case eTask.TestAutopilotCodeOffline
             % Load the configuration sets for the models
-            evalin('base', 'plantConfigSet = sim_plant_configset;'); 
-            evalin('base', 'ctrlConfigSet = ctrl_configset;'); 
+            evalin('base', 'plantConfigSet = sim_plant_configset;');
+            evalin('base', 'ctrlConfigSet = ctrl_configset;');
             
             % Set the variant for QGroundControl
             evalin('base', 'QGC = 0;');
             
             % Set the variant for Simulation Mode
-            evalin('base', 'simMode=0;');
+            evalin('base', 'simMode=1;');
             
-            load_system('PlantModel');
+            % Open the Simulation Model
+            open_system('simModel');
             
             % Let user know config is done
-            clc;
-            disp ('Parallel Simulation Configuration Completed')
+            disp ('SIL Configuration Completed')
             
+        case eTask.TestAutopilotCodeOnTarget
+            % Load the configuration sets for the models
+            evalin('base', 'plantConfigSet = sim_plant_configset;');
+            evalin('base', 'ctrlConfigSet = ctrl_configset;');
+            
+            % Set the variant for QGroundControl
+            evalin('base', 'QGC = 0;');
+            
+            % Set the variant for Simulation Mode
+            evalin('base', 'simMode=2;');
+            
+            % Open the Simulation Model
+            open_system('simModel');
+            
+            % Let user know config is done
+            disp ('PIL Configuration Completed')
+
         case eTask.UAVSMECapabilities
             
             % Load the configuration sets for the models
@@ -73,24 +88,12 @@ if strcmp(choice, 'Yes')
             evalin('base', 'simMode=0;');
             
             % Open the Simulation Model
-            uiopen('simModel',1);
+            open_system('simModel');
             
-            clc;
             % Launch QGroundControl
-            if ismac
-                try
-                    !/Applications/QGroundControl.app/Contents/MacOS/QGroundControl&
-                catch ME %#ok<NASGU>
-                    disp ('Seems like QGroundControl is not properly installed');
-                end
-            elseif isunix
-                % Set here how to launch from Linux
-            else
-                %set here how to launch from Windows
-            end
+            launchQGC;
             
             % Let user know config is done
-            
             disp ('Co-Simulation Configuration Completed')
             
         case eTask.SystemIntegrationTest
@@ -105,32 +108,21 @@ if strcmp(choice, 'Yes')
             evalin('base', 'simMode=0;');
             
             % Open the Raspberry Pi Autopilot Model
-            uiopen('raspiAutopilotControlSystem',1);
+            open_system('raspiAutopilotControlSystem');
             
             clc;
             
             % if in Windows, open the SLRT model too
             if ~ismac && ~isunix
                 %set here how to launch from Windows
-                evalin('base', 'plantConfigSet = slrt_plant_configset;'); 
+                evalin('base', 'plantConfigSet = slrt_plant_configset;');
                 
                 % Open the Raspberry Pi Autopilot Model
-                uiopen('slrtPlantModel',1);
+                open_system('slrtPlantModel');
             end
             
             % Launch QGroundControl
-            if ismac
-                try
-                    !/Applications/QGroundControl.app/Contents/MacOS/QGroundControl&
-                catch ME %#ok<NASGU>
-                    disp ('Seems like QGroundControl is not properly installed');
-                end
-            elseif isunix
-                % Set here how to launch from Linux
-            else
-                %set here how to launch from Windows
-            end
-            
+            launchQGC;
             
             % Let user know config is done
             disp ('HIL Configuration Completed')
@@ -138,8 +130,29 @@ if strcmp(choice, 'Yes')
         otherwise
             error('Function was called with an unsupported task')
     end
-
-
     
-    
+end
+
+end
+
+function launchQGC
+if ismac
+    try
+        !/Applications/QGroundControl.app/Contents/MacOS/QGroundControl&
+    catch ME %#ok<NASGU>
+        disp ('Seems like QGroundControl is not properly installed');
+    end
+elseif isunix
+    % Set here how to launch from Linux
+else
+    % Set here how to launch from Windows
+    try
+        [~,cmdout] = system('tasklist');
+        if ~contains(cmdout,'QGroundControl.exe')
+            system(['start "" /b "',fullfile(getenv('ProgramFiles(x86)'),'QGroundControl\QGroundControl.exe"')]);
+        end
+    catch ME
+        disp ('Seems like QGroundControl is not installed');
+    end
+end
 end

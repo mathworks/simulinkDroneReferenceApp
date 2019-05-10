@@ -32,10 +32,10 @@ cs.set_param('StartTime', '0.0');   % Start time
 cs.set_param('StopTime', 'inf');   % Stop time
 cs.set_param('SolverType', 'Fixed-step');   % Type
 cs.set_param('EnableConcurrentExecution', 'on');   % Show concurrent execution options
-cs.set_param('ConcurrentTasks', 'off');   % Allow tasks to execute concurrently on target
+cs.set_param('ConcurrentTasks', 'on');   % Allow tasks to execute concurrently on target
 cs.set_param('SampleTimeConstraint', 'Unconstrained');   % Periodic sample time constraint
 cs.set_param('Solver', 'ode5');   % Solver
-cs.set_param('FixedStep', '0.005');   % Fixed-step size (fundamental sample time)
+cs.set_param('FixedStep', '0.001');   % Fixed-step size (fundamental sample time)
 cs.set_param('EnableMultiTasking', 'on');   % Treat each discrete rate as a separate task
 cs.set_param('AutoInsertRateTranBlk', 'on');   % Automatically handle rate transition for data transfer
 cs.set_param('InsertRTBMode', 'Whenever possible');   % Deterministic data transfer
@@ -103,9 +103,7 @@ cs.set_param('SimStateOlderReleaseMsg', 'error');   % SimState object from earli
 cs.set_param('InheritedTsInSrcMsg', 'warning');   % Source block specifies -1 sample time
 cs.set_param('MultiTaskRateTransMsg', 'error');   % Multitask rate transition
 cs.set_param('SingleTaskRateTransMsg', 'none');   % Single task rate transition
-% Fix for 
-% The enabled subsystem 'PlantModel/Unmanned Airplane PlantModel/Weather Model/Dryden Wind Turbulence Model  (Discrete (+q -r))/Filters on velocities/Hugw(z)' executes in multiple tasks. This can cause corrupted data or non-deterministic behavior in a real-time system.
-cs.set_param('MultiTaskCondExecSysMsg', 'warning');   % Multitask conditionally executed subsystem
+cs.set_param('MultiTaskCondExecSysMsg', 'error');   % Multitask conditionally executed subsystem
 cs.set_param('TasksWithSamePriorityMsg', 'warning');   % Tasks with equal priority
 cs.set_param('SigSpecEnsureSampleTimeMsg', 'warning');   % Enforce sample times specified by Signal Specification blocks
 cs.set_param('SignalResolutionControl', 'UseLocalSettings');   % Signal resolution

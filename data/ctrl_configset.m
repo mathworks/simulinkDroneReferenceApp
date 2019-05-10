@@ -305,7 +305,7 @@ cs.set_param('CustomSymbolStrUtil', '$N$C');   % Shared utilities
 cs.set_param('CustomSymbolStrEmxType', 'emxArray_$M$N');   % EMX array types identifier format
 cs.set_param('CustomSymbolStrEmxFcn', 'emx$M$N');   % EMX array utility functions identifier format
 cs.set_param('MangleLength', 1);   % Minimum mangle length
-cs.set_param('MaxIdLength', 31);   % Maximum identifier length
+cs.set_param('MaxIdLength', 62);   % Maximum identifier length
 cs.set_param('InternalIdentifier', 'Shortened');   % System-generated identifiers
 cs.set_param('InlinedPrmAccess', 'Literals');   % Generate scalar inlined parameters as
 cs.set_param('SignalNamingRule', 'None');   % Signal naming

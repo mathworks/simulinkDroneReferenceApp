@@ -18,12 +18,17 @@ Simulink.fileGenControl('reset');
 % Close any open models
 models_clean_up;
 
-% Clear the workspace
-% If not empty, Warn the user about clearing the worksapce
+% Determine if the worksapce is empty
+C = evalin('base','who;');
 
-choice = questdlg('Clear the Base Workspace before closing the project?', ...
-    'Clear Base Workspace', ...
-    'Yes', 'No', 'Yes');
+% If not empty, Warn the user about clearing the worksapce
+choice = 'Yes';
+
+if ~isempty(C)
+    choice = questdlg('This script will clear the Base Workspace before setting up the Simulation task. Do you wish to Continue?', ...
+        'Clear Base Workspace', ...
+        'Yes','No', 'Yes');
+end
 
 if strcmp(choice, 'Yes')
     evalin('base', 'clearvars;');

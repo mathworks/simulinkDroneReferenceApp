@@ -116,3 +116,5 @@ If you are interested in contributing we are definitely interested in hearing fr
 If you would like to suggest an enhancement please create a new issue and apply the _enhancement_ label. This is no guarantee that we will get to it, but we will definitely take it into consideration. 
 
 If you have encountered a bug, please create a new issue and apply the _bug_ label.
+
+[![View Simulink Drone Reference Application on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/67625-simulink-drone-reference-application)

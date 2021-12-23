@@ -10,5 +10,6 @@ classdef eTask < uint32
       TestAutopilotCodeOffline        (4)
       TestAutopilotCodeOnTarget       (5)
       SystemIntegrationTest           (6)
+      RunRegressionTests              (7)
    end
 end

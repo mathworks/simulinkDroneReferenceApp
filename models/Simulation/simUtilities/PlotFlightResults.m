@@ -1,7 +1,10 @@
-function [] = PlotFlightResults(simOut)
+function PlotFlightResults(simOut)
 %  Copyright 2018 The MathWorks, Inc.
 
 sigs = simOut.get('logsout');
+
+project = currentProject;
+workFolder = project.ProjectStartupFolder;
 
 % Position
 % ========
@@ -27,24 +30,18 @@ ve = sigs.get('apStatus').Values.Ve.Data(:,2);
 vd = sigs.get('apStatus').Values.Ve.Data(:,3);
 
 
-uav = evalin('base', 'uav');
+uav = evalin('base', 'uavData');
 
 % Initial Position
 IP = uav.ic.Pos_0;
 
-% L1 Guidance Vector
-L2 = sigs.get('L2').Values.Data;
-
 % Waypoints
 Xwpt = evalin('base', 'Xpoints');
 Ywpt = evalin('base', 'Ypoints');
-Zwpt = evalin('base', 'Zpoints');
 
-
-%  Get time vector
+% Get time vector
 timeAp = sigs.get('apStatus').Values.Euler.Time;
 timePl = sigs.get('uavState').Values.X_e.Time;
-
 
 % Estimated Euler_hat Angles
 phi = sigs.get('apStatus').Values.Euler.Data(:,1);
@@ -101,7 +98,6 @@ if (~isempty(IP))
 end
 
 axis equal;
-idx = 1:25:i;
 
 for j=100:100:i-1
     plot(y(j),x(j) ,'-s','MarkerSize',3);
@@ -127,8 +123,7 @@ ylabel('X(m)');
 grid on;
 hold off
 
-eval(['print -dpng  '  num2str(figct) '_'  datestr(now,1) '_' ...
-    datestr(now,'HH') '_' datestr(now,'MM') '_' datestr(now,'SS')]);
+print(fullfile(workFolder,['fig',num2str(figct),'_',datestr(now,'yyyy-mm-dd-HH_MM_SS')]),'-dpng');
 
 figct = figct + 1;
 
@@ -167,8 +162,7 @@ subplot(4,1,4)
     axis tight
     grid on;
 
-eval(['print -dpng  '  num2str(figct) '_'  datestr(now,1) '_' ...
-    datestr(now,'HH') '_' datestr(now,'MM') '_' datestr(now,'SS')]);
+print(fullfile(workFolder,['fig',num2str(figct),'_',datestr(now,'yyyy-mm-dd-HH_MM_SS')]),'-dpng');
 
 figct = figct + 1;
 
@@ -200,8 +194,7 @@ subplot(3,1,3)
     axis tight
     grid on; 
     
-eval(['print -dpng  '  num2str(figct) '_'  datestr(now,1) '_' ...
-    datestr(now,'HH') '_' datestr(now,'MM') '_' datestr(now,'SS')]);
+print(fullfile(workFolder,['fig',num2str(figct),'_',datestr(now,'yyyy-mm-dd-HH_MM_SS')]),'-dpng');
 
 figct = figct + 1;
 
@@ -233,8 +226,7 @@ subplot(3,1,3)
     axis tight
     grid on; 
     
-eval(['print -dpng  '  num2str(figct) '_'  datestr(now,1) '_' ...
-    datestr(now,'HH') '_' datestr(now,'MM') '_' datestr(now,'SS')]);
+print(fullfile(workFolder,['fig',num2str(figct),'_',datestr(now,'yyyy-mm-dd-HH_MM_SS')]),'-dpng');
 
 figct = figct + 1;
 
@@ -266,7 +258,8 @@ subplot(3,1,3)
     axis tight
     grid on; 
     
-eval(['print -dpng  '  num2str(figct) '_'  datestr(now,1) '_' ...
-    datestr(now,'HH') '_' datestr(now,'MM') '_' datestr(now,'SS')]);
+print(fullfile(workFolder,['fig',num2str(figct),'_',datestr(now,'yyyy-mm-dd-HH_MM_SS')]),'-dpng');
 
 figct = figct + 1;
+
+end

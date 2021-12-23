@@ -25,13 +25,13 @@ cs.set_param('HardwareBoard', 'None');   % Hardware board
 cs.set_param('StartTime', '0.0');   % Start time
 cs.set_param('StopTime', 'inf');   % Stop time
 cs.set_param('SolverType', 'Variable-step');   % Type
-cs.set_param('EnableConcurrentExecution', 'on');   % Show concurrent execution options
+cs.set_param('EnableConcurrentExecution', 'off');   % Show concurrent execution options
 cs.set_param('ConcurrentTasks', 'off');   % Allow tasks to execute concurrently on target
 
 cs.set_param('Solver', 'ode45');   % Solver
 
 cs.set_param('EnableMultiTasking', 'on');   % Treat each discrete rate as a separate task
-cs.set_param('AutoInsertRateTranBlk', 'on');   % Automatically handle rate transition for data transfer
+cs.set_param('AutoInsertRateTranBlk', 'off');   % Automatically handle rate transition for data transfer
 cs.set_param('InsertRTBMode', 'Whenever possible');   % Deterministic data transfer
 cs.set_param('PositivePriorityOrder', 'off');   % Higher priority value indicates higher task priority
 
@@ -40,7 +40,7 @@ cs.set_param('LoadExternalInput', 'off');   % Load external input
 cs.set_param('LoadInitialState', 'off');   % Load initial state
 cs.set_param('SaveTime', 'off');   % Save time
 cs.set_param('SaveState', 'off');   % Save states
-cs.set_param('SaveFormat', 'StructureWithTime');   % Format
+cs.set_param('SaveFormat', 'Dataset');   % Format
 cs.set_param('SaveOutput', 'off');   % Save output
 cs.set_param('SaveFinalState', 'off');   % Save final state
 cs.set_param('SignalLogging', 'on');   % Signal logging
@@ -60,9 +60,9 @@ cs.set_param('BlockReduction', 'off');   % Block reduction
 cs.set_param('ConditionallyExecuteInputs', 'on');   % Conditional input branch execution
 cs.set_param('BooleanDataType', 'on');   % Implement logic signals as Boolean data (vs. double)
 cs.set_param('LifeSpan', 'auto');   % Application lifespan (days)
-cs.set_param('UseDivisionForNetSlopeComputation', 'UseDivisionForReciprocalsOfIntegersOnly');   % Use division for fixed-point net slope computation
+cs.set_param('UseDivisionForNetSlopeComputation', 'off');   % Use division for fixed-point net slope computation
 cs.set_param('UseFloatMulNetSlope', 'off');   % Use floating-point multiplication to handle net slope corrections
-cs.set_param('DefaultUnderspecifiedDataType', 'single');   % Default for underspecified data type
+cs.set_param('DefaultUnderspecifiedDataType', 'double');   % Default for underspecified data type
 cs.set_param('InitFltsAndDblsToZero', 'on');   % Use memset to initialize floats and doubles to 0.0
 cs.set_param('EfficientFloat2IntCast', 'off');   % Remove code from floating-point to integer conversions that wraps out-of-range values
 cs.set_param('EfficientMapNaN2IntZero', 'on');   % Remove code from floating-point to integer conversions with saturation that maps NaN to zero
@@ -231,7 +231,7 @@ cs.set_param('TLCAssert', 'off');   % Enable TLC assertion
 cs.set_param('RTWUseSimCustomCode', 'off');   % Use the same custom code settings as Simulation Target
 cs.set_param('CustomSourceCode', '');   % Source file
 cs.set_param('CustomHeaderCode', '');   % Header file
-cs.set_param('CustomInclude', '');   % Include directories
+cs.set_param('CustomInclude','../src');
 cs.set_param('CustomSource', '');   % Source files
 cs.set_param('CustomLibrary', '');   % Libraries
 cs.set_param('CustomLAPACKCallback', '');   % Custom LAPACK library callback

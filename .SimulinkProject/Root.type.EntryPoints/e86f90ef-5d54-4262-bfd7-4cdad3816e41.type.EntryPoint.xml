@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Info Type="StartUp" GroupUUID="758569ce-5045-42df-90cd-009b569ef891" Visible="1" Icon="" File="utilities/base_workspace_set_up.m" Name="3. Initialize Base Workspace">
+    <Extension Value="6ae373a5-d667-4759-bba8-0351a66b2aa6" Name="StartUpPrev" />
+</Info>

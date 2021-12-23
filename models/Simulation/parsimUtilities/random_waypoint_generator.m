@@ -8,37 +8,37 @@ function wps = random_waypoint_generator(wpCount)
 %  wps - array - Waypoint array produced by the function
 %
 %  Copyright 2018 The MathWorks, Inc.
-
-wpCount = min(9, wpCount);
-
-% generate the next waypoint
-x_wp = single(randn*700);
-y_wp = single(randn*700);
-z_wp = getRanVal(500,250,1000);
+arguments
+    wpCount (1,1) {mustBeInteger, mustBeLessThanOrEqual(wpCount,9)}
+end
 
 % create the array to hold the values
-wps = ones(9,3) .* [x_wp, y_wp, z_wp];
+wps = ones(9,3) .* generate_single_wp();
 
 for ii = 2:wpCount
-    reiterate = 1; 
-    attempts = 0;
-    while (reiterate == 1) && (attempts < 2000)
-        reiterate = 0;
-
+    attempts = 1;
+    while attempts < 2000
         % generate the next waypoint
-        x_wp = randn*700;
-        y_wp = randn*700;
-        z_wp = getRanVal(500,250,1000);
-
+        wp = generate_single_wp();
+        
         % check the separation between all WPs
-        for mm = 1:(ii-1)
-           if (norm(wps(mm,1:2)-wps(mm+1,1:2)) < 350)
-               reiterate = 1;
-           end
+        if(all(norm(wps(1:ii-1,1:2) - wp(1:2)) > 350))
+            wps(ii,:) = wp;
+            break;
         end
         attempts = attempts+1;
     end
-
-    wps(ii,:) = [x_wp, y_wp, z_wp];
+    
 end
 
+end
+
+function wp = generate_single_wp()
+x_wp = single(randn*700);
+y_wp = single(randn*700);
+max_z_wp = 500;
+min_z_wp = 250;
+z_wp = single((max_z_wp-min_z_wp).*rand + min_z_wp);
+
+wp = [x_wp, y_wp, z_wp];
+end

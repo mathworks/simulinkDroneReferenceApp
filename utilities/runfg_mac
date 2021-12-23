@@ -1,0 +1,5 @@
+#! /bin/sh 
+
+cd /Applications/FlightGear.app/Contents/Resources 
+
+./../MacOS/fgfs --fg-root=./  --aircraft=Malolo1 --fdm=network,localhost,5501,5502,5503 --fog-fastest --disable-clouds --start-date-lat=2004:06:01:09:00:00 --disable-sound --in-air --enable-freeze --airport=BOS --runway=10L --altitude=150 --heading=90 --offset-distance=4.72 --offset-azimuth=0 --enable-terrasync

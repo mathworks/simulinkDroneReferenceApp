@@ -19,7 +19,8 @@ switch sel_task
         model_list = {};
     case eTask.FlightEnvelopeCharacterization
         model_list = {};
-
+    case eTask.RunRegressionTests
+        model_list = {};
     otherwise
         error('Unsupported task in taskShutdownCallback')
 end

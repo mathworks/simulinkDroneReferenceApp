@@ -63,7 +63,13 @@ switch sel_task
         extra_tlbxs = { ...
             'Parallel Computing Toolbox' ...
             };
-        extra_spkgs = {};   
+        extra_spkgs = {};
+        
+    case eTask.RunRegressionTests
+        extra_tlbxs = { ...
+            'Simulink Test' ...
+            };
+        extra_spkgs = {};
         
     otherwise
         error('Unsupported task in taskToolboxStatus.m')

@@ -2,4 +2,4 @@
 %
 %  Copyright 2018 The MathWorks, Inc.
 
-models_set_up(eTask.FlightControllerDesign);
+models_set_up(eTask.FlightControllerDesign, true);

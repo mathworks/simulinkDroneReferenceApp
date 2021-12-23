@@ -1,4 +1,4 @@
-# Simulink Drone Reference Application [![View Simulink Drone Reference Application on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/67625-simulink-drone-reference-application)
+# Simulink Drone Reference Application [![View Simulink Drone Reference Application on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/104015-simulink-drone-reference-application)
 
 This Simulink® Project shows the implementation of a Remotely Piloted Radio-Control fixed-wing aircraft (i.e. Drone, UAV), an autopilot for flight stabilization, and an operator interface to control its trajectory. 
 

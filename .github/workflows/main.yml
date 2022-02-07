@@ -36,7 +36,7 @@ jobs:
         uses: matlab-actions/run-command@v1.0.1
         with:
           # Script, function, or statement to execute
-          command: openProject(pwd); runTestsuite;
+          command: openProject(pwd); runTestsuite('github');
           
       - name: Test Reporter
         uses: dorny/test-reporter@v1.5.0

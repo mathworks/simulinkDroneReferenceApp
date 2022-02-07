@@ -25,7 +25,7 @@ runner.addSimulinkTestResults();
 
 results = runner.run(suite);
 
-if ismember('github',tags)
+if ~ismember('github',tags)
     % GitHub actions evaluate test success from Test Report
     disp(results.assertSuccess);
 end

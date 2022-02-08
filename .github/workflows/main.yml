@@ -15,8 +15,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "test"
+  test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -44,3 +44,4 @@ jobs:
           name: Check MATLAB test results from JUnit report
           path: work/results.xml
           reporter: java-junit
+          fail-on-error: false

@@ -47,7 +47,7 @@ This Simulink Project exercises several common workflows in flight control devel
 
 6. **Deploy and Test Correctness of the Flight Controller’s Generated Code** Test the code’s behavior on a development board (a Raspberry Pi) for same results (within bounds) using Simulink's Processor-In-the-Loop.
 
-7. **System Integration Test (Hardware-In-the-Loop)** Test the flight controller deployed in the development board (Raspberry Pi) with a 6DOF aircraft simulation running in a [Speedgoat®](https://www.speedgoat.com/) Real-Time computer with [Simulink Real-Time™](http://www.mathworks.com/products/simulink-real-time.html).
+7. **System Integration Test (Hardware-In-the-Loop)** Test the flight controller deployed in the development board (Raspberry Pi) with a 6DOF aircraft simulation running in a [Speedgoat®](https://www.speedgoat.com/) Real-Time computer with [Simulink Real-Time™](https://www.mathworks.com/products/simulink-real-time.html).
 
 8. **Run Regression Tests** Run Regression tests locally.
 

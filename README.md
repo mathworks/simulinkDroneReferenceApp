@@ -106,7 +106,7 @@ To get the full functionality, you will need a computer running MATLAB®, Simuli
 - A Raspberry Pi 2 or 3 board
 - MATLAB Coder™
 - Simulink Coder™
-- [Simulink Support Package for Raspberry Pi](https://www.mathworks.com/help/supportpkg/raspberrypi/)
+- [Simulink Support Package for Raspberry Pi](https://www.mathworks.com/hardware-support/raspberry-pi-simulink.html)
 
 ### For Automated Tests (Back-to-Back and Regression Tests)
 

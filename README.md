@@ -96,7 +96,7 @@ To get the full functionality, you will need a computer running MATLAB®, Simuli
 - MATLAB Coder™
 - Simulink Coder™
 - [Embedded Coder™](https://www.mathworks.com/products/embedded-coder.html)
-- [Simulink Support Package for Raspberry Pi](https://www.mathworks.com/help/supportpkg/raspberrypi/)
+- [Simulink Support Package for Raspberry Pi](https://www.mathworks.com/hardware-support/raspberry-pi-simulink.html)
 
 ### For System Integration Test (Hardware-In-the-Loop)
 
